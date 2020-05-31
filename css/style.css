@@ -164,6 +164,7 @@ footer{
   background: lavenderblush;
   text-align: center;
 }
+
 /* モバイル */
 @media only screen and (max-width:600px){
   html{
