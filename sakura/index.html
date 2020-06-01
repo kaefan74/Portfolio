@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sakura</title>
+  <style>
+    body{
+      background: #FFCCFF;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="hana"></div>
+
+  <script>
+    let SCREEN_W = window.innerWidth;//スクリーン横いっぱい
+    let SCREEN_H = window.innerHeight;//スクリーン縦いっぱい
+    const KAMI_MAX = 200; //桜の枚数
+    const COLOS=["hotpink","#6927FF","#FFAAFF","#EAD9FF","#FF00FF","white","#FF99FF","#CC99FF","#6633FF","#9999FF","white",
+    "#FF66FF","#9933FF","#CC00FF","#330066","#CC0066","#6633CC","#FF00CC","#FF0099","#FF0066","#CC0066","	#990066","#6600FF"];
+    function rand(min,max)
+    {
+      return(Math.floor(Math.random()*(max+1-min)+min));
+    }
+
+    class Kami{
+      constructor()
+      {
+        //1枚
+        this.elm = document.createElement("div");//divを作る
+        document.body.appendChild(this.elm);//bodyにelmを足していく
+
+        this.sty=this.elm.style//elmのスタイルは以下で設定
+
+        //ランダムに渡された値をxとyに入れて
+        //this.sty left topに入れる
+        this.x = rand(0,SCREEN_W);
+        this.y = rand(0,SCREEN_H);
+
+        //桜を降らす
+        this.vx=rand(-10,15);
+        this.vy=rand(5,10);
+
+        //回転角度
+        this.ang=0;
+        //回転スピード
+        this.spd=rand(10,20);
+
+        this.rX=rand(0,10)/10;//x軸 (0~1の間で表示される為)
+        this.rY=rand(0,10)/10;//y軸 (0~1の間で表示される為)
+        this.rZ=rand(0,10)/10;//z軸 (0~1の間で表示される為)
+
+        this.sty.position='fixed';
+        this.sty.width="15px"
+        this.sty.height="13px"
+        this.sty.borderRadius="15px"
+        this.sty.borderTopRightRadius="0px"
+        this.sty.borderBottomLeftRadius="0px"
+        this.sty.backgroundColor=COLOS[rand(0,COLOS.length)];
+      }
+      update()
+      {
+        //上から降らせる
+        this.x+=this.vx;
+        this.y+=this.vy;
+        //下まで行ったら上（０）からやり直す
+        if(this.y>SCREEN_H)
+        {
+          this.x = rand(0,SCREEN_W);
+          this.y = -20;
+        }
+
+        this.ang+=this.spd;
+        this.sty.left=this.x+"px";
+        this.sty.top=this.y+"px";
+        //回転
+        this.sty.transform="rotate3D("+this.rX+","+this.rY+","+this.rZ+","+this.ang+"deg)";
+      }
+    }
+
+    let kami=[];
+    for(let i=0;i<KAMI_MAX;i++)
+    {
+      kami.push(new Kami());
+    }
+
+    // let ang= 0;
+    //桜の座標
+    // sty.transform="rotate3D(0,0,1,40deg)";//40度時計回り
+    //回転
+    setInterval(mainLoop,1000/20);
+    function mainLoop(){
+      // ang+=10; //回転を回していく
+      // // sty.transform="rotate3D(1,0,0,"+ang+"deg)";//x（横線）軸に回転している
+      // // sty.transform="rotate3D(0,1,0,"+ang+"deg)";//y（縦線）軸に回転している
+      // sty.transform="rotate3D(0.5,0,1,"+ang+"deg)";
+
+      for(let i=0;i<KAMI_MAX;i++)
+      kami[i].update();
+    }
+  </script>
+</body>
+</html>
