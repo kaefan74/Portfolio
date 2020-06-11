@@ -187,6 +187,14 @@ footer{
     font-size: 2.5rem;
     margin: auto;
   }
+  .sakuhinn{
+    display: block;
+    width: 250px;
+    margin: 2rem auto;
+  }
+  .work{
+    margin-top: 5rem;
+  }
   .profile_details .picture{
     margin: auto;
   }
