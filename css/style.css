@@ -85,6 +85,7 @@ a {
   padding: 2rem;
   margin-right: 3rem;
 }
+
 #skill >.container{
   display: grid;
   grid-template-columns: repeat(3,25rem);
@@ -190,5 +191,8 @@ footer{
     grid-template-columns: repeat(2,25rem);
     grid-template-rows: repeat(3,30rem);
     gap: 3rem ;
+  }
+  .deliverable{
+    display: block;
   }
 }
