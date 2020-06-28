@@ -56,9 +56,13 @@ a {
 .content-section{
   padding: 5rem 0;
 }
-.point{
+.nav{
   cursor: pointer;
 }
+.nav:hover{
+  border-bottom: solid 3px plum;
+}
+
 .profile_details{
   display: flex;
   justify-content: space-around;
