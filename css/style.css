@@ -79,7 +79,7 @@ a {
   line-height: 3.5rem;
 }
 .text p{
-  margin: 0;
+  margin-top: -2rem;
 }
 
 .profile_details .picture{
